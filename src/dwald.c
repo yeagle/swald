@@ -37,7 +37,7 @@ double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
   }
   else if (lambda == 1 && tau == 1) 
   {
-    d = alpha*exp(-(2*alpha*kappa-1)/(2*t*kappa^2))* (1 + erf( (alpha*kappa-1) / (kappa*sqrt(2*t)) )) / (2*t^2*kappa);
+    d = alpha*exp(-(2*alpha*kappa-1)/(2*t*pow(kappa,2)))* (1 + erf( (alpha*kappa-1) / (kappa*sqrt(2*t)) )) / (2*pow(t,2)*kappa);
   }
   else 
   {  
