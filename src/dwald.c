@@ -27,6 +27,61 @@ double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
   }
   else 
   {
+      
+      d = -(1/16)*sqrt(2)*pow(2,((1/2)*tau+1/2))*alpha*exp(-(1/2)*pow(alpha,2)*lambda/t)*
+      pow(kappa,(-tau-3))*pow(lambda,(-(1/2)*tau-1))*pow(t,(-(1/2)*tau-3))*M_PI*
+      
+      (
+       
+       -sqrt(2)*
+       LaguerreL(-(1/2)*tau, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(lambda,(5/2))*sqrt(t)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*
+       pow(alpha,2)*pow(kappa,3)+sqrt(2)*
+       LaguerreL(-(1/2)*tau, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))* pow(lambda,5/2)*sqrt(t)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*pow(alpha,2)*
+       
+       pow(kappa,3)-sqrt(2)*
+       LaguerreL(-(1/2)*tau, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(lambda,3/2)*pow(t,3/2)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*pow(kappa,3)+
+       2*sqrt(2)*
+       LaguerreL(-(1/2)*tau, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(lambda,3/2)*sqrt(t)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*alpha*
+       pow(kappa,2)-2*sqrt(2)*
+       LaguerreL(-(1/2)*tau, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(lambda,3/2)*sqrt(t)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*alpha*
+       pow(kappa,2)-sqrt(2)*
+       LaguerreL(-(1/2)*tau, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       sqrt(lambda)*sqrt(t)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*kappa+sqrt(2)*LaguerreL(-(1/2)*tau, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       sqrt(lambda)*sqrt(t)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2)*kappa+
+       sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(alpha,3)*pow(kappa,3)*pow(lambda,3)-sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(alpha,3)*pow(kappa,3)*pow(lambda,3)+sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))* alpha*pow(kappa,3)*pow(lambda,2)*tau*t-sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       alpha*pow(kappa,3)*pow(lambda,2)*t-3*sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(alpha,2)*pow(kappa,2)*pow(lambda,2)+3*sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+
+                                                                           3/2)*
+       
+       LaguerreL(-(1/2)*tau+1/2, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(alpha,2)*pow(kappa,2)*pow(lambda,2)-sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(kappa,2)*lambda*tau*t+sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       pow(kappa,2)*lambda*t+3*sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       alpha*kappa*lambda-3*sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*
+       LaguerreL(-(1/2)*tau+1/2, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       alpha*kappa*lambda-
+       LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       gamma(-(1/2)*tau+3/2)*sin((1/2)*M_PI*tau)+
+       LaguerreL(-(1/2)*tau+1/2, 3/2, (1/2)*pow(alpha*kappa*lambda-1,2)/(lambda*pow(kappa,2)*t))*
+       gamma(-(1/2)*tau+3/2)*sin((1/2)*M_PI*tau)
+       )/
+      (gamma(tau)*sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2));
+      
 //   d = -sqrt(2) * pow(2, tau / 2 + 1 / 2) * alpha *
 //       exp(-1 / t * alpha * alpha * lambda / 2) * pow(kappa, -tau - 3) * pow(lambda, -tau / 2 - 1) * pow(t, -tau / 2 -
 //       3) * M_PI * (-sqrt(2) * LaguerreL(-tau / 2, 1 / 2, 1 / lambda * pow(alpha * kappa * lambda -
