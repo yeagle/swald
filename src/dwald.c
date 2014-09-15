@@ -16,16 +16,31 @@ double LaguerreL(int n, double a, double x)
   return Lf;
 }
 
+
+double erf(double x)
+{
+  double e;
+  
+  e = 2 * pnorm(x * sqrt(2)) - 1;
+  
+  return e;
+}
+
+
 double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
 {
   double d;
 
-  if (kappa == 1)
+  if (lambda == 1 && alpha == 1 && tau == 1 && kappa == 1 )
   {
     d = exp(- 1 / (2*t)) / (2 * pow(t,2));
   }
+  else if (lambda == 1 && tau == 1) 
+  {
+    d = alpha*exp(-(2*alpha*kappa-1)/(2*t*kappa^2))* (1 + erf( (alpha*kappa-1) / (kappa*sqrt(2*t)) )) / (2*t^2*kappa);
+  }
   else 
-  {     
+  {  
     d = 0; 
     /* 
       -(1/16)*sqrt(2)*pow(2,((1/2)*tau+1/2))*alpha*exp(-(1/2)*pow(alpha,2)*lambda/t)*
@@ -80,8 +95,7 @@ double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
      )/
     (gamma(tau)*sin((1/2)*M_PI*tau)*gamma(-(1/2)*tau+3/2)*cos((1/2)*M_PI*tau)*gamma(-(1/2)*tau+2));
     */
-  }  
-     
+  }   
   return d;
 }    
      
