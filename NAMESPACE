@@ -1,0 +1,10 @@
+useDynLib(RWald, dwald_c = dwald, 
+                 pwald_c = pwald, 
+                 qwald_c = qwald, 
+                 rwald_c = rwald)
+export (
+dwald,
+pwald,
+qwald,
+rwald
+)

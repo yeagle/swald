@@ -1,0 +1,28 @@
+RWald R package
+===============
+lorem ipsum.
+
+Using the package
+-----------------
+::
+
+  dwald(q, v,a,t)
+  pwald(q, v,a,t)
+  qwald(q, v,a,t)
+  rwald(q, v,a,t)
+ 
+*arguments*:
+
+- lorem
+- ipsum
+
+lorem ipsum
+
+Please note
+-----------
+When using this package, please cite as:
+lorem ipsum
+
+License
+-------
+http://www.r-project.org/Licenses/GPL-2
