@@ -4,14 +4,14 @@
 
 double dwald_trunc(double t, double lambda, double alpha, double v, double d)
 {
-  double d;
+  double w;
   
-  d = alpha * sqrt( lambda / (2 * pi * pow(t, 3) * (lambda * t * v + 1)) ) *
+  w = alpha * sqrt( lambda / (2 * M_PI * pow(t, 3) * (lambda * t * v + 1)) ) *
       1 / pnorm(d / sqrt(v), 0, 1, 1, 0) *
       exp( - (lambda * pow(d * t - alpha, 2)) / 
-      (2 * t * (lambda * t * v + 1)) ) *
-      pnorm( (lambda * alpha * v + d, 0, 1, 1, 0) / 
-      (sqrt(lambda * t * pow(v, 2) + v) ) );
+           (2 * t * (lambda * t * v + 1)) ) *
+      pnorm( (lambda * alpha * v + d) / 
+             (sqrt(lambda * t * pow(v, 2) + v) ), 0, 1, 1, 0);
 
-  return d;
+  return w;
 }
