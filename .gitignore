@@ -1,3 +1,4 @@
 src/RWald.so
 src/dwald.o
 src/symbols.rds
+src/dwald_trunc.o
