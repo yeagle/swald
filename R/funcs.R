@@ -6,11 +6,17 @@ LaguerreL <- function(n, a, x) {
 
 erf <- function(x) 2 * pnorm(x * sqrt(2)) - 1
 
-dwald <- function(lambda, alpha, tau, t, kappa){
+dwald <- function(t, lambda, alpha, tau, kappa){
   d <- vector("double", length=1)
   d <- .Call(dwald_c, t, lambda, alpha, tau, kappa)
   return(d)
 }
+
+dwald_trunc <- function(t, lambda, alpha, v, d){
+  w <- vector("double", length=1)
+  w <- .Call(dwald_trunc_c, t, lambda, alpha, v, d)
+  return(w)
+} 
 
 dwald_rfunc <- function(lambda, alpha, tau, t, kappa){
   # In
