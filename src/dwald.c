@@ -21,7 +21,7 @@ double erf(double x)
 {
   double e;
   
-  e = 2 * pnorm(x * sqrt(2)) - 1;
+  e = 2 * pnorm(x * sqrt(2), 0,1, 1,0) - 1;
   
   return e;
 }
