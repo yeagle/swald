@@ -3,7 +3,7 @@ useDynLib(RWald, dwald_c = dwald,
                  log_dwald_trunc_c = log_dwald_trunc)
 export (
 dwald,
-dwald_rfunc,
 dwald_trunc,
-log_dwald_trunc
+log_dwald_trunc,
+dwald_r
 )
