@@ -16,7 +16,7 @@ dwald_trunc <- function(t, lambda, alpha, v, d){
   return(w)
 } 
 
-dwald_rfunc <- function(lambda, alpha, tau, t, kappa){
+dwald_r <- function(t, lambda, alpha, tau, kappa){
   # In
   #   t: RT [ms] >0	
   #   alpha: boundary separation >0  
