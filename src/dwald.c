@@ -31,6 +31,10 @@ double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
 {
   double d;
 
+  if (t < 0.01)
+  {
+    d = 0;  
+  }
   if (lambda == 1 && alpha == 1 && tau == 1 && kappa == 1 )
   {
     d = exp(- 1 / (2*t)) / (2 * pow(t,2));
