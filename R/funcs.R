@@ -11,6 +11,11 @@ dwald <- function(t, lambda, alpha, tau, kappa){
   return(d)
 }
 
+log_dwald_trunc <- function(t, lambda, alpha, v, d){
+  w <- .Call(log_dwald_trunc_c, t, lambda, alpha, v, d)
+  return(w)
+} 
+
 dwald_trunc <- function(t, lambda, alpha, v, d){
   w <- .Call(dwald_trunc_c, t, lambda, alpha, v, d)
   return(w)
