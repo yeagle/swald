@@ -1,4 +1,6 @@
-library(hypergeo)
+dwald <- function(t, lambda, alpha, tau, kappa){
+  dwald_gamma(t, lambda, alpha, tau, kappa)
+}
 
 LaguerreL <- function(n, a, x) {
   ((n+a+1)*beta(1+a,n+1))^-1 * genhypergeo(U=-n, L=a+1, z=x)
@@ -6,18 +8,18 @@ LaguerreL <- function(n, a, x) {
 
 erf <- function(x) 2 * pnorm(x * sqrt(2)) - 1
 
-dwald <- function(t, lambda, alpha, tau, kappa){
-  d <- .Call(dwald_c, t, lambda, alpha, tau, kappa)
+dwald_gamma <- function(t, lambda, alpha, tau, kappa){
+  d <- .Call(dwald_gamma_c, t, lambda, alpha, tau, kappa)
   return(d)
 }
 
-log_dwald_trunc <- function(t, lambda, alpha, v, d){
-  w <- .Call(log_dwald_trunc_c, t, lambda, alpha, v, d)
+dwald_trunc <- function(t, lambda, alpha, v, d){
+  w <- .Call(dwald_trunc_c, t, lambda, alpha, v, d)
   return(w)
 } 
 
-dwald_trunc <- function(t, lambda, alpha, v, d){
-  w <- .Call(dwald_trunc_c, t, lambda, alpha, v, d)
+log_dwald_trunc <- function(t, lambda, alpha, v, d){
+  w <- .Call(log_dwald_trunc_c, t, lambda, alpha, v, d)
   return(w)
 } 
 

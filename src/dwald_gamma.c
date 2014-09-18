@@ -27,14 +27,10 @@ double erf(double x)
   return e;
 }
 
-double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
+double dwald_gamma_d(double t, double lambda, double alpha, double tau, double kappa)
 {
   double d;
 
-  if (t < 0.01)
-  {
-    d = 0;  
-  }
   if (lambda == 1 && alpha == 1 && tau == 1 && kappa == 1 )
   {
     d = exp(- 1 / (2*t)) / (2 * pow(t,2));
@@ -50,11 +46,11 @@ double dwald_d(double t, double lambda, double alpha, double tau, double kappa)
   return d;
 }    
      
-SEXP  dwald(SEXP t, SEXP lambda, SEXP alpha, SEXP tau, SEXP kappa) {
+SEXP  dwald_gamma(SEXP t, SEXP lambda, SEXP alpha, SEXP tau, SEXP kappa) {
   double d;
   SEXP value;
     
-  d = dwald_d(REAL(t)[0], REAL(lambda)[0], REAL(alpha)[0], REAL(tau)[0], REAL(kappa)[0]);
+  d = dwald_gamma_d(REAL(t)[0], REAL(lambda)[0], REAL(alpha)[0], REAL(tau)[0], REAL(kappa)[0]);
     
   PROTECT(value = allocVector(REALSXP, 1));
   REAL(value)[0] = d;

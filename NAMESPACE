@@ -1,8 +1,9 @@
-useDynLib(RWald, dwald_c = dwald, 
+useDynLib(RWald, dwald_gamma_c = dwald_gamma, 
                  dwald_trunc_c = dwald_trunc,
                  log_dwald_trunc_c = log_dwald_trunc)
 export (
 dwald,
+dwald_gamma,
 dwald_trunc,
 log_dwald_trunc,
 dwald_r
