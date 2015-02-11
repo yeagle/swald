@@ -24,7 +24,7 @@ double phi(double x)
 {
   double c = 0;
     for (int i=1; i<=10; i++) {
-    c = c + 1/i;
+    c = c + 1./i;
   }
   return(c);
 }
@@ -36,7 +36,7 @@ double neg_gamma(double x)
 
 double neg_int_gamma(double x)
 {
-    return(pow(-1,-x) / factorial(-x)) * (phi(-x) + digamma(1));
+    return(pow(-1.,-x) / factorial(-x)) * (phi(-x) + digamma(1));
 }
 
 int is_int(double f)
@@ -113,7 +113,7 @@ double erf(double x)
 {
   double e;
   
-  e = 2 * pnorm(x * sqrt(2), 0,1, 1,0) - 1;
+  e = 2 * pnorm(x * sqrt(2.), 0,1, 1,0) - 1;
   
   return e;
 }
