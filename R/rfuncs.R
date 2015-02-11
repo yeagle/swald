@@ -1,7 +1,3 @@
-dwald <- function(t, alpha, tau, kappa){
-  dwald_gamma(t, alpha, tau, kappa)
-}
-
 phi <- function(x) {
   c <- 0
   for (i in 1:x) {
@@ -63,40 +59,11 @@ LaguerreL <- function(n, a, x) {
 
 erf <- function(x) 2 * pnorm(x * sqrt(2)) - 1
 
-dIG <- function(t, alpha, lambda, nu){
-  d <- vector("double", length=length(t))
-  for (i in 1:length(t)) {
-      d[i] <- .Call(dIG_c, t[i], alpha, lambda, nu)
-  }
-  return(d)
-}
-
-dShiftedWald <- function(t, alpha, gamma, theta){
-  d <- vector("double", length=length(t))
-  for (i in 1:length(t)) {
-      d[i] <- .Call(dshifted_wald_c, t[i], alpha, gamma, theta)
-  }
-  return(d)
-}
-
-dwald_gamma <- function(t, alpha, tau, kappa){
-  d <- .Call(dwald_gamma_c, t, alpha, tau, kappa)
-  return(d)
-}
-
-
-dwald_trunc <- function(t, lambda, alpha, v, d){
-  w <- .Call(dwald_trunc_c, t, lambda, alpha, v, d)
-  return(w)
-} 
-
-log_dwald_trunc <- function(t, lambda, alpha, v, d){
-  w <- .Call(log_dwald_trunc_c, t, lambda, alpha, v, d)
-  return(w)
-} 
-
-
 dwald_r <- function(t, alpha, tau, kappa){
+  dwald_gamma_r(t, alpha, tau, kappa)
+}
+
+dwald_gamma_r <- function(t, alpha, tau, kappa){
   # In
   #   t: RT [ms] >0	
   #   alpha: boundary separation >0  
@@ -217,6 +184,6 @@ dIG_r <- function(t, alpha, lambda, nu) {
   alpha * (lambda / (2*pi*t^3)) ^ .5 * exp( -lambda * (nu*t-alpha)^2 / (2*t))
 }
 
-dShiftedWald_r <- function(t, alpha, gamma, theta) {
+dswald_r <- function(t, alpha, gamma, theta) {
   alpha * (2*pi*((t-theta)^3)) ^ (-.5) * exp( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)))
 }
