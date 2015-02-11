@@ -1,5 +1,5 @@
-dwald <- function(t, lambda, alpha, tau, kappa){
-  dwald_gamma(t, lambda, alpha, tau, kappa)
+dwald <- function(t, alpha, tau, kappa){
+  dwald_gamma(t, alpha, tau, kappa)
 }
 
 phi <- function(x) {
@@ -63,8 +63,8 @@ LaguerreL <- function(n, a, x) {
 
 erf <- function(x) 2 * pnorm(x * sqrt(2)) - 1
 
-dwald_gamma <- function(t, lambda, alpha, tau, kappa){
-  d <- .Call(dwald_gamma_c, t, lambda, alpha, tau, kappa)
+dwald_gamma <- function(t, alpha, tau, kappa){
+  d <- .Call(dwald_gamma_c, t, alpha, tau, kappa)
   return(d)
 }
 
@@ -77,8 +77,6 @@ log_dwald_trunc <- function(t, lambda, alpha, v, d){
   w <- .Call(log_dwald_trunc_c, t, lambda, alpha, v, d)
   return(w)
 } 
-
-
 
 
 dwald_r <- function(t, alpha, tau, kappa){
