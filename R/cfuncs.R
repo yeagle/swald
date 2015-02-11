@@ -13,13 +13,16 @@ dIG <- function(t, alpha, lambda, nu){
 dswald <- function(t, alpha, gamma, theta){
   d <- vector("double", length=length(t))
   for (i in 1:length(t)) {
-      d[i] <- .Call(dswald_c, t[i], alpha, gamma, theta)
+    d[i] <- .Call(dswald_c, t[i], alpha, gamma, theta)
   }
   return(d)
 }
 
 dwald_gamma <- function(t, alpha, tau, kappa){
-  d <- .Call(dwald_gamma_c, t, alpha, tau, kappa)
+  d <- vector("double", length=length(t))
+  for (i in 1:length(t)) {
+    d[i] <- .Call(dwald_gamma_c, t[i], alpha, tau, kappa)
+  }
   return(d)
 }
 
