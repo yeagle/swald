@@ -37,7 +37,7 @@ double neg_int_gamma(double x)
     return(pow(-1,-x) / factorial(-x)) * (phi(-x) + digamma(1));
 }
 
-double is_int(double f)
+int is_int(double f)
 {
 	return floorf(f)==f;
 }
@@ -142,9 +142,9 @@ double dwald_gamma_d(double t, double alpha, double tau, double kappa)
         
         L2 = LaguerreL(-(1/2)*tau+1/2, 3/2, (1/2)*pow(alpha*kappa-1,2)/(pow(kappa,2)*t));
         
-        L3 = LaguerreL(-(1/2)*tau,     1/2, (1/2)*pow(alpha*kappa-1,2)/(pow(kappa,2)*t));
+        L3 = LaguerreL(-(1/2)*tau, 1/2, (1/2)*pow(alpha*kappa-1,2)/(pow(kappa,2)*t));
         
-        L4 = LaguerreL(-(1/2)*tau,     3/2, (1/2)*pow(alpha*kappa-1,2)/(pow(kappa,2)*t));
+        L4 = LaguerreL(-(1/2)*tau, 3/2, (1/2)*pow(alpha*kappa-1,2)/(pow(kappa,2)*t));
         
         C1 = sin((1/2)*M_PI*tau)*r_gamma(-(1/2)*tau+3/2);
         
