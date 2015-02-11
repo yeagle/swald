@@ -1,10 +1,16 @@
 useDynLib(RWald, dwald_gamma_c = dwald_gamma, 
                  dwald_trunc_c = dwald_trunc,
-                 log_dwald_trunc_c = log_dwald_trunc)
+                 log_dwald_trunc_c = log_dwald_trunc,
+                 dIG_c = dIG,
+                 dShiftedWald_c = dShiftedWald)
 export (
 dwald,
 dwald_gamma,
 dwald_trunc,
 log_dwald_trunc,
-dwald_r
+dwald_r,
+dIG,
+dIG_r,
+dShiftedWald,
+dShiftedWald_r
 )
