@@ -28,11 +28,17 @@ dwald_gamma <- function(t, alpha, tau, kappa){
 
 
 dwald_trunc <- function(t, lambda, alpha, v, d){
-  w <- .Call(dwald_trunc_c, t, lambda, alpha, v, d)
-  return(w)
+  d <- vector("double", length=length(t))
+  for (i in 1:length(t)) {
+    d[i] <- .Call(dwald_trunc_c, t[i], lambda, alpha, v, d)
+  }
+  return(d)
 } 
 
 log_dwald_trunc <- function(t, lambda, alpha, v, d){
-  w <- .Call(log_dwald_trunc_c, t, lambda, alpha, v, d)
-  return(w)
+  d <- vector("double", length=length(t))
+  for (i in 1:length(t)) {
+    d[i] <- .Call(log_dwald_trunc_c, t[i], lambda, alpha, v, d)
+  }
+  return(d)
 } 
