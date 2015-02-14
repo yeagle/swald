@@ -318,6 +318,10 @@ dwald_gamma_r_log <- function(t, alpha, tau, kappa){
   return(d)
 }
 
+dwald_trunc_r <- function(t, alpha, tau, kappa, give_log=FALSE){
+  stop("Not implemented")
+}
+
 # Shifted dwald function
 dswald_r <- function(t, alpha, gamma, theta, give_log=FALSE) {
   if(give_log)
