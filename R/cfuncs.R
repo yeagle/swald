@@ -26,10 +26,10 @@ dwald_trunc <- function(t, lambda, alpha, v, d, give_log=FALSE){
   return(d)
 } 
 
-dswald <- function(t, alpha, gamma, theta, give_log=FALSE){
+dswald <- function(t, alpha, nu, theta, give_log=FALSE){
   d <- vector("double", length=length(t))
   for (i in 1:length(t)) {
-    d[i] <- .Call(dswald_c, t[i], alpha, gamma, theta, give_log)
+    d[i] <- .Call(dswald_c, t[i], alpha, nu, theta, give_log)
   }
   return(d)
 }
