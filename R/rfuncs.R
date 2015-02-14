@@ -73,7 +73,132 @@ LaguerreL <- function(n, a, x) {
 
 erf <- function(x) 2 * pnorm(x * sqrt(2)) - 1
 
-dwald_gamma_r <- function(t, alpha, tau, kappa){
+dwald_r <- function(t, alpha, tau, kappa){
+  dwald_gamma_r(t, alpha, tau, kappa)
+}
+
+dwald_gamma_r <- function(t, alpha, tau, kappa, give_log=FALSE){
+  # In
+  #   t: RT [ms] >0	
+  #   alpha: boundary separation >0  
+  #   tau: scale parameter of the gamma distribution >0
+  #   kappa: shape parameter of the gamma distribution >0	
+  if (give_log) {
+    d <- dwald_gamma_r_log(t, alpha, tau, kappa)
+  } else {  
+    if (alpha == 1 && tau == 1 && kappa == 1 )
+    {
+      d = exp(- 1 / (2*t)) / (2 * t^2)
+    }
+    else if (tau == 1) 
+    {
+      d = alpha*exp(-(2*alpha*kappa-1)/(2*t*kappa^2))* 
+          (1 + erf( (alpha*kappa-1) / (kappa*sqrt(2*t)) )) / (2*(t^2)*kappa)
+    }
+    else 
+    {
+      L1 <- LaguerreL(-(1/2)*tau+1/2, 1/2, (1/2)*(alpha*kappa-1)^2/(kappa^2*t))
+    
+      L2 <- LaguerreL(-(1/2)*tau+1/2, 3/2, (1/2)*(alpha*kappa-1)^2/(kappa^2*t))
+    
+      L3 <- LaguerreL(-(1/2)*tau, 1/2, (1/2)*(alpha*kappa-1)^2/(kappa^2*t))
+    
+      L4 <- LaguerreL(-(1/2)*tau, 3/2, (1/2)*(alpha*kappa-1)^2/(kappa^2*t))
+    
+      C1 <- sin((1/2)*pi*tau)*gamma(-(1/2)*tau+3/2)
+    
+      C2 <- sqrt(2)*alpha^3*kappa^3*sqrt(t)
+    
+      d = -(1/16)*2^((1/2)*tau+1/2)*alpha*exp(-(1/2)*alpha^2/t)*kappa^(-tau-3)*
+          t^(-(1/2)*tau-7/2)*pi*
+    
+      (
+    
+      C1*
+      L1*
+      C2 + 
+    
+      C1*
+      L1*
+      sqrt(2)*alpha*kappa^3*tau*t^(3/2) -
+    
+      C1*
+      L2*
+      C2 - 
+    
+      C1*
+      L1*
+      sqrt(2)*alpha*kappa^3*t^(3/2) - 
+    
+      3*C1*
+      L1*
+      sqrt(2)*alpha^2*kappa^2*sqrt(t) - 
+    
+      C1*
+      L1*
+      sqrt(2)*kappa^2*tau*t^(3/2) +
+    
+      3*C1*
+      L2*
+      sqrt(2)*alpha^2*kappa^2*sqrt(t)-
+    
+      2*
+      L3*
+      cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*alpha^2*kappa^3*t +
+    
+      2*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*
+      L4*
+      alpha^2*kappa^3*t +
+    
+      C1*
+      L1*
+      sqrt(2)*kappa^2*t^(3/2) -
+    
+      2*
+      L3*
+      cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*kappa^3*t^2 +
+    
+      3*C1*
+      L1*
+      sqrt(2)*alpha*kappa*sqrt(t) - 
+    
+      3*C1*
+      L2*
+      sqrt(2)*alpha*kappa*sqrt(t) + 
+    
+      4* 			
+      L3*
+      cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*alpha*kappa^2*t -
+    
+      4*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*
+      L4*
+      alpha*kappa^2*t -
+    
+      C1*
+      L1*
+      sqrt(2)*sqrt(t) +
+    
+      C1*
+      L2*
+      sqrt(2)*sqrt(t) -
+    
+      2*
+      L3*
+      cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*kappa*t +
+    
+      2*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*
+      L4*
+      kappa*t
+    
+      )/
+    
+      (gamma(tau)*C1*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2))
+   }
+ }
+  return(d)
+}
+
+dwald_gamma_r_log <- function(t, alpha, tau, kappa){
   # In
   #   t: RT [ms] >0	
   #   alpha: boundary separation >0  
@@ -81,12 +206,12 @@ dwald_gamma_r <- function(t, alpha, tau, kappa){
   #   kappa: shape parameter of the gamma distribution >0	
   if (alpha == 1 && tau == 1 && kappa == 1 )
   {
-    d = exp(- 1 / (2*t)) / (2 * t^2)
+    d = (- 1 / (2*t)) - log(2) - 2*log(t)
   }
   else if (tau == 1) 
   {
-    d = alpha*exp(-(2*alpha*kappa-1)/(2*t*kappa^2))* 
-        (1 + erf( (alpha*kappa-1) / (kappa*sqrt(2*t)) )) / (2*(t^2)*kappa)
+    d = log(alpha) - ((2*alpha*kappa-1)/(2*t*kappa^2)) +  
+        log(1 + erf( (alpha*kappa-1) / (kappa*sqrt(2*t)) )) - log(2) - 2*log(t) - log(kappa)
   }
   else 
   {
@@ -102,14 +227,16 @@ dwald_gamma_r <- function(t, alpha, tau, kappa){
     
     C2 <- sqrt(2)*alpha^3*kappa^3*sqrt(t)
     
-    d = -(1/16)*2^((1/2)*tau+1/2)*alpha*exp(-(1/2)*alpha^2/t)*kappa^(-tau-3)*
-        t^(-(1/2)*tau-7/2)*pi*
+    d = log(-(1/16)*2^((1/2)*tau+1/2)*alpha*exp(-(1/2)*alpha^2/t)*kappa^(-tau-3)*
+        t^(-(1/2)*tau-7/2)*pi *
     
     (
     
     C1*
     L1*
-    C2 + 
+    C2 
+    
+    + 
     
     C1*
     L1*
@@ -182,21 +309,22 @@ dwald_gamma_r <- function(t, alpha, tau, kappa){
     2*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2)*
     L4*
     kappa*t
+
+       
+    ) ) -
     
-    )/
-    
-    (gamma(tau)*C1*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2))
-  }
+    log(gamma(tau)) - log(C1) - log(cos((1/2)*pi*tau)) - log(gamma(-(1/2)*tau+2))
+ }
   return(d)
 }
 
 # Shifted dwald function
 dswald_r <- function(t, alpha, gamma, theta, give_log=FALSE) {
   if(give_log)
-    d <- log(alpha) +  (-.5) * log(2) + log(pi) + 3*log(t-theta) 
-         + ( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)) )
+    d <- log(alpha) +  (-.5) * log(2) + log(pi) + 3*log(t-theta) +
+         ( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)) )
   else
-    d <- alpha * (2*pi*((t-theta)^3)) ^ (-.5) 
-         * exp( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)))
+    d <- alpha * (2*pi*((t-theta)^3)) ^ (-.5) *
+         exp( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)))
   return(d)
 }

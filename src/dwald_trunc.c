@@ -4,7 +4,7 @@
 #include <Rinternals.h>
 #include <Rmath.h>
 
-double dwald_trunc_d(double t, double lambda, double alpha, double v, double d, int give_log)
+double dwald_trunc_d(double t, double lambda, double alpha, double v, double delta, int give_log)
 {
   double d;
 
@@ -12,22 +12,22 @@ double dwald_trunc_d(double t, double lambda, double alpha, double v, double d, 
   {
     d = log(alpha) + 
         0.5 * ( log(lambda) - log(2) - log(M_PI) - 3 * log(t) - log(lambda * t * v + 1)) -
-        log(pnorm(d / sqrt(v), 0, 1, 1, 0) ) -
-        (lambda * pow(d * t - alpha,2)) / (2 * t * (lambda * t * v + 1)) +
-        log(pnorm((lambda * alpha * v + d) / (sqrt(lambda * t * pow(v,2) + v)), 0, 1, 1, 0 ));
+        log(pnorm(delta / sqrt(v), 0, 1, 1, 0) ) -
+        (lambda * pow(delta * t - alpha,2)) / (2 * t * (lambda * t * v + 1)) +
+        log(pnorm((lambda * alpha * v + delta) / (sqrt(lambda * t * pow(v,2) + v)), 0, 1, 1, 0 ));
   }
   else
   {
     d = alpha * sqrt( lambda / (2 * M_PI * pow(t, 3) * (lambda * t * v + 1)) ) *
-        1 / pnorm(d / sqrt(v), 0, 1, 1, 0) *
-        exp( - (lambda * pow(d * t - alpha, 2)) / (2 * t * (lambda * t * v + 1)) ) *
-        pnorm( (lambda * alpha * v + d) / (sqrt(lambda * t * pow(v, 2) + v) ), 0, 1, 1, 0);
+        1 / pnorm(delta / sqrt(v), 0, 1, 1, 0) *
+        exp( - (lambda * pow(delta * t - alpha, 2)) / (2 * t * (lambda * t * v + 1)) ) *
+        pnorm( (lambda * alpha * v + delta) / (sqrt(lambda * t * pow(v, 2) + v) ), 0, 1, 1, 0);
   }
 
   return d;
 }
 
-SEXP  dwald_trunc(SEXP t, SEXP lambda, SEXP alpha, SEXP v, SEXP delta SEXP give_log) { 
+SEXP  dwald_trunc(SEXP t, SEXP lambda, SEXP alpha, SEXP v, SEXP delta, SEXP give_log) { 
   double d;
   SEXP value;
     

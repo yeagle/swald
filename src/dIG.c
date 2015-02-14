@@ -9,7 +9,7 @@ double dIG_d(double t, double alpha, double lambda, double nu, int give_log)
     double d;
 
     if(give_log)
-      d = log(alpha) + .5 * (log(lambda) - 3.*(log(2)+log(pi)+log(t))) + ( -lambda * pow((nu*t-alpha),2) / (2.*t));
+      d = log(alpha) + .5 * (log(lambda) - 3.*(log(2)+log(M_PI)+log(t))) + ( -lambda * pow((nu*t-alpha),2) / (2.*t));
     else
       d = alpha * pow(lambda / (2*M_PI*pow(t,3)),.5) * exp( -lambda * pow(nu*t-alpha,2) / (2*t));
   

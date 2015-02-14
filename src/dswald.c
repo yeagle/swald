@@ -9,8 +9,8 @@ double dswald_d(double t, double alpha, double gamma, double theta, int give_log
     double d;
 
     if(give_log)
-      d = log(alpha) +  (-.5) * log(2) + log(pi) + 3*log(t-theta) 
-          + ( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)) );
+      d = log(alpha) +  (-.5) * log(2) + log(M_PI) + 3*log(t-theta) 
+          + ( -pow((alpha-gamma*(t-theta)),2) / (2*(t-theta)) );
     else
       d = alpha * pow(2*M_PI*pow((t-theta),3), -.5) 
           * exp( -pow(alpha-gamma*(t-theta),2) / (2*(t-theta)));
@@ -18,7 +18,7 @@ double dswald_d(double t, double alpha, double gamma, double theta, int give_log
     return(d);
 }
 
-SEXP  dswald(SEXP t, SEXP alpha, SEXP gamma, SEXP theta SEXP give_log) {
+SEXP  dswald(SEXP t, SEXP alpha, SEXP gamma, SEXP theta, SEXP give_log) {
   double d;
   SEXP value;
     
