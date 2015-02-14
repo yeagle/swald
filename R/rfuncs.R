@@ -1,3 +1,17 @@
+dwald_r <- function(t, alpha, tau, kappa){
+  dwald_gamma_r(t, alpha, tau, kappa)
+}
+
+dIG_r <- function(t, alpha, lambda, nu, give_log=FALSE) {
+  if(give_log) 
+    d <- log(alpha) + .5 * (log(lambda) - 3*(log(2)+log(pi)+log(t))) + ( -lambda * (nu*t-alpha)^2 / (2*t))
+  else
+    d <- alpha * (lambda / (2*pi*t^3)) ^ .5 * exp( -lambda * (nu*t-alpha)^2 / (2*t))
+  return(d)
+}
+
+# dwald_gamma necessary functions
+
 phi <- function(x) {
   c <- 0
   for (i in 1:x) {
@@ -58,10 +72,6 @@ LaguerreL <- function(n, a, x) {
 }
 
 erf <- function(x) 2 * pnorm(x * sqrt(2)) - 1
-
-dwald_r <- function(t, alpha, tau, kappa){
-  dwald_gamma_r(t, alpha, tau, kappa)
-}
 
 dwald_gamma_r <- function(t, alpha, tau, kappa){
   # In
@@ -176,14 +186,17 @@ dwald_gamma_r <- function(t, alpha, tau, kappa){
     )/
     
     (gamma(tau)*C1*cos((1/2)*pi*tau)*gamma(-(1/2)*tau+2))
- }
+  }
   return(d)
 }
 
-dIG_r <- function(t, alpha, lambda, nu) {
-  alpha * (lambda / (2*pi*t^3)) ^ .5 * exp( -lambda * (nu*t-alpha)^2 / (2*t))
-}
-
-dswald_r <- function(t, alpha, gamma, theta) {
-  alpha * (2*pi*((t-theta)^3)) ^ (-.5) * exp( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)))
+# Shifted dwald function
+dswald_r <- function(t, alpha, gamma, theta, give_log=FALSE) {
+  if(give_log)
+    d <- log(alpha) +  (-.5) * log(2) + log(pi) + 3*log(t-theta) 
+         + ( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)) )
+  else
+    d <- alpha * (2*pi*((t-theta)^3)) ^ (-.5) 
+         * exp( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)))
+  return(d)
 }

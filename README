@@ -1,27 +1,33 @@
 RWald R package
 ===============
-lorem ipsum.
+This R Package provides Wald (Inverse Gaussian) distribution functions.
+
+Installing in R
+---------------
+::
+
+  library(devtools)
+  install_github("HelenSteingroever/RWald")
 
 Using the package
 -----------------
 ::
 
-  dwald(q, v,a,t)
-  pwald(q, v,a,t)
-  qwald(q, v,a,t)
-  rwald(q, v,a,t)
+  dwald(q, alpha, gamma, theta, give_log)
+  pwald(q, alpha, gamma, theta)
+  qwald(p, alpha, gamma, theta)
+  rwald(n, alpha, gamma, theta)
  
 *arguments*:
 
-- lorem
-- ipsum
+- q
+- p
+- n
+- alpha
+- gamma
+- theta
+- give_log
 
-lorem ipsum
-
-Please note
------------
-When using this package, please cite as:
-lorem ipsum
 
 License
 -------

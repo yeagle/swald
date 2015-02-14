@@ -1,4 +1,4 @@
-// Gamma Wald Distribution
+// Driftrate as Gamma - Wald Distribution
 
 #include <R.h>
 #include <Rinternals.h>
@@ -118,7 +118,7 @@ double erf(double x)
   return e;
 }
 
-double dwald_gamma_d(double t, double alpha, double tau, double kappa)
+double dwald_gamma_d(double t, double alpha, double tau, double kappa, int give_log)
 {
     double d;
     
@@ -239,11 +239,11 @@ double dwald_gamma_d(double t, double alpha, double tau, double kappa)
     return(d);
 }
      
-SEXP  dwald_gamma(SEXP t, SEXP alpha, SEXP tau, SEXP kappa) {
+SEXP  dwald_gamma(SEXP t, SEXP alpha, SEXP tau, SEXP kappa, SEXP give_log) {
   double d;
   SEXP value;
     
-  d = dwald_gamma_d(REAL(t)[0], REAL(alpha)[0], REAL(tau)[0], REAL(kappa)[0]);
+  d = dwald_gamma_d(REAL(t)[0], REAL(alpha)[0], REAL(tau)[0], REAL(kappa)[0], LOGICAL(give_log)[0]);
     
   PROTECT(value = allocVector(REALSXP, 1));
   REAL(value)[0] = d;

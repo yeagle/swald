@@ -1,44 +1,36 @@
-dwald <- function(t, alpha, tau, kappa){
-  dwald_gamma(t, alpha, tau, kappa)
+dwald <- function(t, alpha, tau, kappa, give_log=FALSE){
+  dwald_gamma(t, alpha, tau, kappa, give_log)
 }
 
-dIG <- function(t, alpha, lambda, nu){
+dIG <- function(t, alpha, lambda, nu, give_log=FALSE){
   d <- vector("double", length=length(t))
   for (i in 1:length(t)) {
-      d[i] <- .Call(dIG_c, t[i], alpha, lambda, nu)
+      d[i] <- .Call(dIG_c, t[i], alpha, lambda, nu, give_log)
   }
   return(d)
 }
 
-dswald <- function(t, alpha, gamma, theta){
+dwald_gamma <- function(t, alpha, tau, kappa, give_log=FALSE){
   d <- vector("double", length=length(t))
   for (i in 1:length(t)) {
-    d[i] <- .Call(dswald_c, t[i], alpha, gamma, theta)
+    d[i] <- .Call(dwald_gamma_c, t[i], alpha, tau, kappa, give_log)
   }
   return(d)
 }
 
-dwald_gamma <- function(t, alpha, tau, kappa){
+dwald_trunc <- function(t, lambda, alpha, v, d, give_log=FALSE){
   d <- vector("double", length=length(t))
   for (i in 1:length(t)) {
-    d[i] <- .Call(dwald_gamma_c, t[i], alpha, tau, kappa)
-  }
-  return(d)
-}
-
-
-dwald_trunc <- function(t, lambda, alpha, v, d){
-  d <- vector("double", length=length(t))
-  for (i in 1:length(t)) {
-    d[i] <- .Call(dwald_trunc_c, t[i], lambda, alpha, v, d)
+    d[i] <- .Call(dwald_trunc_c, t[i], lambda, alpha, v, d, give_log)
   }
   return(d)
 } 
 
-log_dwald_trunc <- function(t, lambda, alpha, v, d){
+dswald <- function(t, alpha, gamma, theta, give_log=FALSE){
   d <- vector("double", length=length(t))
   for (i in 1:length(t)) {
-    d[i] <- .Call(log_dwald_trunc_c, t[i], lambda, alpha, v, d)
+    d[i] <- .Call(dswald_c, t[i], alpha, gamma, theta, give_log)
   }
   return(d)
-} 
+}
+

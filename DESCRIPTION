@@ -1,6 +1,6 @@
 Package: RWald
 Version: 0.1-0
-Date: 2014-09-15
+Date: 2015-02-14
 Title: Wald simple reaction time
 Authors@R: c(person("Helen", "Steingroever",
                     role=c("aut", "cre"),
@@ -13,7 +13,7 @@ Maintainer: Helen Steingroever <helen.steingroever@gmail.com>
 Depends: R (>= 3.0.0), hypergeo (>= 1.2-5)
 Suggests: MASS
 License: GPL (>= 2)
-URL: https://github.com/todo
-Description: This package provides simple reaction time distribution functions,
+URL: https://github.com/HelenSteingroever/RWald
+Description: Provides simple reaction time distribution functions,
   based on an inverse gaussian distribution with density, CDF, quantile and random
   functions.
