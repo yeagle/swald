@@ -321,18 +321,18 @@ dwald_gamma_r_log <- function(t, alpha, tau, kappa){
 dwald_trunc_r <- function(t, lambda, alpha, v, delta, give_log=FALSE){
   if(give_log)
   {
-    d = log(alpha) + 
-        0.5 * ( log(lambda) - log(2) - log(pi) - 3 * log(t) - log(lambda * t * v + 1)) -
-        log(pnorm(delta / sqrt(v)) ) -
-        (lambda * (delta * t - alpha)^2) / (2 * t * (lambda * t * v + 1)) +
-        log(pnorm((lambda * alpha * v + delta) / (sqrt(lambda * t * v^2 + v))))
+    d <- log(alpha) + 
+         0.5 * ( log(lambda) - log(2) - log(pi) - 3 * log(t) - log(lambda * t * v + 1)) -
+         log(pnorm(delta / sqrt(v)) ) -
+         (lambda * (delta * t - alpha)^2) / (2 * t * (lambda * t * v + 1)) +
+         log(pnorm((lambda * alpha * v + delta) / (sqrt(lambda * t * v^2 + v))))
   }
   else
   {
-    d = alpha * sqrt( lambda / (2 * pi * t^3 * (lambda * t * v + 1)) ) *
-        1 / pnorm(delta / sqrt(v)) *
-        exp( - (lambda * (delta * t - alpha)^2) / (2 * t * (lambda * t * v + 1)) ) *
-        pnorm( (lambda * alpha * v + delta) / (sqrt(lambda * t * v^2 + v) ))
+    d <- alpha * sqrt( lambda / (2 * pi * t^3 * (lambda * t * v + 1)) ) *
+         1 / pnorm(delta / sqrt(v)) *
+         exp( - (lambda * (delta * t - alpha)^2) / (2 * t * (lambda * t * v + 1)) ) *
+         pnorm( (lambda * alpha * v + delta) / (sqrt(lambda * t * v^2 + v) ))
   }
 
   return(d)
