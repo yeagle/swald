@@ -4,7 +4,7 @@ dwald_r <- function(t, alpha, tau, kappa){
 
 dIG_r <- function(t, alpha, lambda, nu, give_log=FALSE) {
   if(give_log) 
-    d <- log(alpha) + .5 * (log(lambda) - 3*(log(2)+log(pi)+log(t))) + ( -lambda * (nu*t-alpha)^2 / (2*t))
+    d <- log(alpha) + .5 * (log(lambda) - log(2) - log(pi) -3*log(t)) -lambda * (nu*t-alpha)^2 / (2*t)
   else
     d <- alpha * (lambda / (2*pi*t^3)) ^ .5 * exp( -lambda * (nu*t-alpha)^2 / (2*t))
   return(d)
@@ -321,7 +321,7 @@ dwald_gamma_r_log <- function(t, alpha, tau, kappa){
 # Shifted dwald function
 dswald_r <- function(t, alpha, gamma, theta, give_log=FALSE) {
   if(give_log)
-    d <- log(alpha) +  (-.5) * log(2) + log(pi) + 3*log(t-theta) +
+    d <- log(alpha) +  (-.5) * (log(2) + log(pi) + 3*log(t-theta)) +
          ( -(alpha-gamma*(t-theta))^2 / (2*(t-theta)) )
   else
     d <- alpha * (2*pi*((t-theta)^3)) ^ (-.5) *
