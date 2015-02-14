@@ -335,7 +335,7 @@ dwald_trunc_r <- function(t, lambda, alpha, v, delta, give_log=FALSE){
         pnorm( (lambda * alpha * v + delta) / (sqrt(lambda * t * v^2 + v) ))
   }
 
-  return d;
+  return(d)
 }
 
 
