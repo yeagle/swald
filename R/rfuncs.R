@@ -348,3 +348,16 @@ dswald_r <- function(t, alpha, nu, theta, give_log=FALSE) {
          exp( -(alpha-nu*(t-theta))^2 / (2*(t-theta)))
   return(d)
 }
+
+pswald_r <- function(t, alpha, nu, theta, lower.tail=TRUE, log.p=FALSE) {
+  if(log.p)
+    x <- exp(t)
+  else
+    x <- t
+
+  p <- pnorm((nu*(x-theta)-alpha) / sqrt((x-theta))) + 
+       exp(2*alpha*nu) * pnorm(-(nu*(x-theta)+alpha) / sqrt((x-theta)))
+
+  if(lower.tail) return(p)
+  else return(1-p)
+}
