@@ -5,3 +5,4 @@ src/dwald_trunc.o
 src/dIG.o
 src/dswald.o
 src/dwald_gamma.o
+src/pswald.o

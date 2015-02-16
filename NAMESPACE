@@ -1,7 +1,8 @@
 useDynLib(RWald, dIG_c = dIG,
                  dwald_gamma_c = dwald_gamma,
                  dwald_trunc_c = dwald_trunc,
-                 dswald_c = dswald)
+                 dswald_c = dswald,
+                 pswald_c = pswald)
 export (
 dwald,
 dwald_r,
@@ -12,5 +13,6 @@ dwald_trunc_r,
 dIG,
 dIG_r,
 dswald,
-dswald_r
+dswald_r,
+pswald
 )
