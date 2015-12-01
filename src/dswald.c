@@ -4,7 +4,7 @@
 #include <Rinternals.h>
 #include <Rmath.h>
 
-double dswald_d(double t, double alpha, double nu, double theta, int give_log)
+double d_swald(double t, double alpha, double nu, double theta, int give_log)
 {
     double d;
 
@@ -18,11 +18,11 @@ double dswald_d(double t, double alpha, double nu, double theta, int give_log)
     return(d);
 }
 
-SEXP  dswald(SEXP t, SEXP alpha, SEXP nu, SEXP theta, SEXP give_log) {
+SEXP dswald(SEXP t, SEXP alpha, SEXP nu, SEXP theta, SEXP give_log) {
   double d;
   SEXP value;
     
-  d = dswald_d(REAL(t)[0], REAL(alpha)[0], REAL(nu)[0], REAL(theta)[0], LOGICAL(give_log)[0]);
+  d = d_swald(REAL(t)[0], REAL(alpha)[0], REAL(nu)[0], REAL(theta)[0], LOGICAL(give_log)[0]);
     
   PROTECT(value = allocVector(REALSXP, 1));
   REAL(value)[0] = d;

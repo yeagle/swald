@@ -1,33 +1,15 @@
-RWald R package
+swald R package
 ===============
-This R Package provides Wald (Inverse Gaussian) distribution functions.
+Provides simple reaction time distribution functions,
+based on a shifted Wald (inverse Gaussian) distribution with density,
+CDF, quantile and random functions.
 
 Installing in R
 ---------------
 ::
 
   library(devtools)
-  install_github("HelenSteingroever/RWald")
-
-Using the package
------------------
-::
-
-  dwald(q, alpha, gamma, theta, give_log)
-  pwald(q, alpha, gamma, theta)
-  qwald(p, alpha, gamma, theta)
-  rwald(n, alpha, gamma, theta)
- 
-*arguments*:
-
-- q
-- p
-- n
-- alpha
-- gamma
-- theta
-- give_log
-
+  install_github("yeagle/swald")
 
 License
 -------

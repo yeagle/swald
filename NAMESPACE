@@ -1,19 +1,9 @@
-useDynLib(RWald, dIG_c = dIG,
-                 dwald_gamma_c = dwald_gamma,
-                 dwald_trunc_c = dwald_trunc,
-                 dswald_c = dswald,
+useDynLib(swald, dswald_c = dswald,
                  pswald_c = pswald)
-export (
-dwald,
-dwald_r,
-dwald_gamma,
-dwald_gamma_r,
-dwald_trunc,
-dwald_trunc_r,
-dIG,
-dIG_r,
-dswald,
-dswald_r,
-pswald,
-pswald_r
-)
+export (dswald,
+        pswald,
+        rswald,
+        qswald)
+
+import (RWiener,
+        statmod)

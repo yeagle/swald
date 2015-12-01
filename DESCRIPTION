@@ -1,19 +1,15 @@
-Package: RWald
+Package: swald
 Version: 0.1-0
-Date: 2015-02-14
-Title: Wald simple reaction time
-Authors@R: c(person("Helen", "Steingroever",
-                    role=c("aut", "cre"),
-                    email="helen.steingroever@gmail.com"),
-             person("Dominik", "Wabersich", 
+Date: 2016-12-01
+Title: Shifted Wald Simple Reaction Time
+Authors@R: c(person("Dominik", "Wabersich", 
                     role=c("aut", "cre"),
                     email="dominik.wabersich@gmail.com"))
-Author: Helen Steingroever
-Maintainer: Helen Steingroever <helen.steingroever@gmail.com>
-Depends: R (>= 3.0.0), hypergeo (>= 1.2-5)
-Suggests: MASS
+Author: Dominik Wabersich [aut, cre]
+Maintainer: Dominik Wabersich <dominik.wabersich@gmail.com>
+Depends: R (>= 3.2.2), RWiener (>= 1.2-0), statmod (>= 1.4.22)
 License: GPL (>= 2)
-URL: https://github.com/HelenSteingroever/RWald
+URL: https://github.com/yeagle/swald
 Description: Provides simple reaction time distribution functions,
-  based on an inverse gaussian distribution with density, CDF, quantile and random
-  functions.
+  based on a shifted Wald (inverse Gaussian) distribution with density,
+  CDF, quantile and random functions.

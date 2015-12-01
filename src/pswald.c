@@ -1,10 +1,8 @@
-// Shifted Wald (Inverse Gaussian) CDF
-
 #include <R.h>
 #include <Rinternals.h>
 #include <Rmath.h>
 
-double pswald_p(double t, double alpha, double nu, double theta, int lower_tail, int log_p)
+double p_swald(double t, double alpha, double nu, double theta, int lower_tail, int log_p)
 {
     double p;
     double x;
@@ -20,11 +18,11 @@ double pswald_p(double t, double alpha, double nu, double theta, int lower_tail,
     return (lower_tail ? p : 1-p);
 }
 
-SEXP  pswald(SEXP t, SEXP alpha, SEXP nu, SEXP theta, SEXP lower_tail, SEXP log_p) {
+SEXP pswald(SEXP t, SEXP alpha, SEXP nu, SEXP theta, SEXP lower_tail, SEXP log_p) {
   double p;
   SEXP value;
     
-  p = pswald_p(REAL(t)[0], REAL(alpha)[0], REAL(nu)[0], REAL(theta)[0], LOGICAL(lower_tail)[0], LOGICAL(log_p)[0]);
+  p = p_swald(REAL(t)[0], REAL(alpha)[0], REAL(nu)[0], REAL(theta)[0], LOGICAL(lower_tail)[0], LOGICAL(log_p)[0]);
     
   PROTECT(value = allocVector(REALSXP, 1));
   REAL(value)[0] = p;
